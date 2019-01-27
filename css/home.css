@@ -1,0 +1,16 @@
+.topo-cor {
+    background-color: #5A6374;
+}
+
+.menu-cor {
+    background-color: #E2E9F4;
+}
+
+.menu-cor.ativo {
+    background-color: #6C778A;
+}
+
+img.perfil {
+    width: 2.5rem;
+    height: 2.5rem;
+}

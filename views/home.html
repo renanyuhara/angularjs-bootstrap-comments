@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../frameworks/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="../css/home.css">
+    <title>Home</title>
+</head>
+<body ng-controller="appController">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <h3>{{titulo}}</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div ng-if="carregando">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <span>Carregando...</span>
+                </div>
+
+                
+            </div>
+            <div class="col text-right">
+                <button class="btn btn-success btn-sm shadow" ng-click="carregarComentarios()">
+                    <i class="fas fa-sync-alt"></i>
+                    Atualizar comentários
+                </button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12" ng-repeat="post in lista_para_exibicao">
+                <div class="card-header">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col col-sm">
+                                <span class="badge badge-info">Post: {{post.postId}}</span>
+                            </div>
+                            <div class="col col-sm text-right">
+                                <button class="btn btn-sm btn-secondary" ng-click="exibirComentarios(post)">
+                                    <i class="fas " ng-class="post.exibindo ? 'fa-compress-arrows-alt' : 'fa-expand-arrows-alt'"></i>
+                                    {{post.exibindo ? "Esconder comentarios" : "Mostrar comentarios" }}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 card-body shadow-sm" ng-repeat="comment in post.comentarios" ng-if="post.exibindo">
+                    <div class="row">
+                        <div class="col-12">
+                            <p class="card-text font-weight-light">{{comment.body}}</p>
+                        </div>
+                        <div class="col-12 text-right">
+                            <img src="../assets/images/ph.jpg" alt="..." class="perfil rounded-circle">
+                            <small class="text-muted font-italic">Autor: {{comment.name}}</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text-center" ng-if="lista_para_exibicao.length > 0">
+            <button class="btn btn-primary" ng-click="recuarPagina()">
+                <i class="fas fa-chevron-circle-left"></i>
+            </button>
+            <button class="btn disabled" >{{pagina_atual}} de {{qtde_paginas}}</button>
+            <button class="btn btn-primary" ng-click="avancarPagina()">
+                <i class="fas fa-chevron-circle-right"></i>
+            </button>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <a target="__blank" href="http://jsonplaceholder.typicode.com/comments">Original</a>
+            </div>
+        </div>
+        <div ng-if="debug" class="row">
+            <ul>
+                <li>titulo = {{titulo}}</li>
+                <li>lista_de_comentarios = {{lista_de_comentarios.length}}</li>
+                <li>lista_para_exibicao = {{lista_para_exibicao.length}}</li>
+                <li>lista_de_posts = {{lista_de_posts.length}}</li>
+                <li>pagina_atual = {{pagina_atual}}</li>
+                <li>qtde_registros_por_pagina = {{qtde_registros_por_pagina}}</li>
+                <li>qtde_paginas = {{qtde_paginas}}</li>
+                <li>qtde_posts = {{qtde_posts}}</li>
+            </ul>
+        </div>
+    </div>
+
+
+    
+
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <script src="../frameworks/angularjs/angular.min.js"></script>
+    <script src="../frameworks/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../app.js"></script>
+</body>
+</html>
